@@ -1,5 +1,6 @@
 buildscript {
     ext.ktor_version = '1.2.3'
+    ext.jackson_version = '2.9.+'
 }
 
 plugins {
@@ -16,8 +17,20 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    //ktor
     compile "io.ktor:ktor-server-netty:$ktor_version"
+    implementation "io.ktor:ktor-jackson:$ktor_version"
+
     compile 'org.koin:koin-ktor:2.0.1'
+    compile group: 'com.github.kittinunf.fuel', name: 'fuel', version: '2.1.0'
+    compile 'se.michaelthelin.spotify:spotify-web-api-java:3.0.0'
+
+    //jackson
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jackson_version"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
+
+    compile("ch.qos.logback:logback-classic:1.2.3")
 }
 
 compileKotlin {
