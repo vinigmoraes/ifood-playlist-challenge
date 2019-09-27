@@ -19,7 +19,7 @@ class WeatherFactory {
 
         fun createWeather(temperature: Double) =
             when {
-                temperature < THIRTY_DEGREES ->  Hot(temperature)
+                temperature > THIRTY_DEGREES ->  Hot(temperature)
                 temperature in warmRange -> Warm(temperature)
                 temperature in chillyRange -> Chilly(temperature)
                 else -> Cold(temperature)

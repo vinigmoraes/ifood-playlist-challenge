@@ -1,5 +1,6 @@
 package br.com.challenge.application.city
 
+import br.com.challenge.application.playlist.PlaylistResponse
 import br.com.challenge.core.city.CityService
 import io.ktor.application.ApplicationCall
 import io.ktor.http.HttpStatusCode
@@ -13,8 +14,8 @@ class CityController(
 
         val cityName = call.parameters["name"] ?: throw Exception()
 
-        val response = cityService.playlist(cityName)
+        val playlists = cityService.playlist(cityName)
 
-        call.respond(HttpStatusCode.OK, response)
+        call.respond(HttpStatusCode.OK, PlaylistResponse(playlists))
     }
 }

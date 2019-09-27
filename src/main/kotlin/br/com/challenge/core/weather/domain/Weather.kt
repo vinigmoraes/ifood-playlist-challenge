@@ -6,5 +6,5 @@ abstract class Weather {
 
     abstract val temperature: Double
 
-    abstract val playlistType: PlaylistType
+    abstract fun playlistType() : String
 }

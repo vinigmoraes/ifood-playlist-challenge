@@ -6,5 +6,5 @@ import br.com.challenge.core.weather.domain.Weather
 class PlaylistSuggester(
     private val spotifyGateway: SpotifyGateway
 ) {
-    fun preparePlaylist(weather: Weather) = spotifyGateway.findPlaylist(weather.playlistType.name)
+    fun preparePlaylist(weather: Weather) = spotifyGateway.findPlaylist(weather.playlistType())
 }
