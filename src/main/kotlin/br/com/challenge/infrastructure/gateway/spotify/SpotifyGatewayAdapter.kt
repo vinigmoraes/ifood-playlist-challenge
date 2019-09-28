@@ -2,6 +2,7 @@ package br.com.challenge.infrastructure.gateway.spotify
 
 import br.com.challenge.core.track.ports.SpotifyGateway
 import br.com.challenge.core.weather.playlist.Playlist
+import br.com.challenge.infrastructure.gateway.spotify.response.SpotifyPlaylistResponse
 import com.wrapper.spotify.SpotifyApi
 import com.wrapper.spotify.SpotifyHttpManager
 
@@ -21,10 +22,16 @@ class SpotifyGatewayAdapter(
             it.accessToken = it.clientCredentials().build().execute().accessToken
         }
 
-    override fun findPlaylist(categoryId: String): List<Playlist> {
+    override fun playlist(keyword: String): SpotifyPlaylistResponse {
 
-        val playlist = spotifyApi.getCategorysPlaylists(categoryId).build().execute()
+        val searchPlaylistResponse = spotifyApi.searchPlaylists(keyword).build()
+            .execute().items.random()
 
-        return playlist.items.map { Playlist(name = it.name, href = it.href)}
+        val tracksPlaylistResponse = spotifyApi.getPlaylistsTracks(searchPlaylistResponse.id).build()
+            .execute().items.map { it.track.name }
+
+        val playlist = Playlist(name = searchPlaylistResponse.name, tracks = tracksPlaylistResponse)
+
+        return SpotifyPlaylistResponse(playlist)
     }
 }

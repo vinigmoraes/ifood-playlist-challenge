@@ -1,8 +1,8 @@
 package br.com.challenge.core.track.ports
 
-import br.com.challenge.core.weather.playlist.Playlist
+import br.com.challenge.infrastructure.gateway.spotify.response.SpotifyPlaylistResponse
 
 interface SpotifyGateway {
 
-    fun findPlaylist(categoryId: String): List<Playlist>
+    fun playlist(keyword: String): SpotifyPlaylistResponse
 }

@@ -14,8 +14,10 @@ class CityController(
 
         val cityName = call.parameters["name"] ?: throw Exception()
 
-        val playlists = cityService.playlist(cityName)
+        val playlist = cityService.playlist(cityName)
 
-        call.respond(HttpStatusCode.OK, PlaylistResponse(playlists))
+        val temperature = cityService.getTemperature(cityName)
+
+        call.respond(HttpStatusCode.OK, PlaylistResponse(cityName, temperature, playlist))
     }
 }

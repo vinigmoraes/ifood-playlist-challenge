@@ -1,13 +1,13 @@
 package br.com.challenge.application
 
 import br.com.challenge.application.city.CityController
-import br.com.challenge.application.city.cityRoutes
 import br.com.challenge.application.city.cityModules
+import br.com.challenge.application.city.cityRoutes
+import br.com.challenge.application.config.configModules
+import br.com.challenge.application.config.objectMapper
 import br.com.challenge.application.health.HealthController
 import br.com.challenge.application.health.health
 import br.com.challenge.application.health.healthModules
-import br.com.challenge.application.config.configModules
-import br.com.challenge.application.config.objectMapper
 import br.com.challenge.application.playlist.playlistModules
 import io.ktor.application.Application
 import io.ktor.application.install
