@@ -1,0 +1,6 @@
+{
+  "message" : "City with name: test was not found",
+  "details" : {
+    "parameter" : "test"
+  }
+}

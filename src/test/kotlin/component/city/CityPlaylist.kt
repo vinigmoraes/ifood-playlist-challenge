@@ -13,6 +13,7 @@ import io.ktor.server.testing.withTestApplication
 import org.junit.Assert
 import org.junit.Test
 import org.skyscreamer.jsonassert.JSONAssert
+import utils.readJsonResponse
 
 class CityPlaylist {
 
@@ -31,5 +32,19 @@ class CityPlaylist {
             Assert.assertNotNull(playlist.temperature)
             Assert.assertNotNull(playlist.playlist)
             Assert.assertEquals(HttpStatusCode.OK, response.status())
+        }
+
+    @Test
+    fun `should return http status code 404 when city name doesn't exist`() =
+        withTestApplication(Application::main) {
+            val cityName = "test"
+            val expectedResponse = readJsonResponse("city_not_found")
+
+            val response = handleRequest(HttpMethod.Get, "cities/$cityName/playlist") {
+                addHeader("Content-Type", "application/json")
+            }.response
+
+            Assert.assertEquals(HttpStatusCode.NotFound, response.status())
+            Assert.assertEquals(expectedResponse, response.content)
         }
 }
