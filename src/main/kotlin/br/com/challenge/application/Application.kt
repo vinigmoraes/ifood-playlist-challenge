@@ -12,7 +12,8 @@ import br.com.challenge.application.playlist.playlistModules
 import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import io.ktor.jackson.jackson
+import io.ktor.http.ContentType
+import io.ktor.jackson.JacksonConverter
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -26,7 +27,7 @@ fun Application.main() {
     }
 
     install(ContentNegotiation) {
-        jackson { objectMapper }
+        register(ContentType.Application.Json, JacksonConverter(objectMapper))
     }
 
     val healthController by inject<HealthController>()

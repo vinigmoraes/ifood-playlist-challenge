@@ -6,6 +6,6 @@ import io.ktor.routing.get
 
 fun Routing.cityRoutes(cityController: CityController) {
 
-    get("/cities/{name}") { cityController.playlist(call) }
+    get("/cities/{name}/playlist") { cityController.playlist(call) }
 
 }
