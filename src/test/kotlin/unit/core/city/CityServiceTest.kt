@@ -39,7 +39,7 @@ class CityServiceTest {
 
         val cityPlaylist = cityService.playlist(cityName)
 
-        Assert.assertEquals(cityPlaylist.city.name, playlist.name)
+        Assert.assertEquals(cityPlaylist.playlist.name, playlist.name)
         Assert.assertEquals(cityPlaylist.playlist.tracks, playlist.tracks)
     }
 
