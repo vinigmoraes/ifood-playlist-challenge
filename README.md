@@ -1,5 +1,3 @@
-**Ifood technical challenge**
-
 [![CircleCI](https://circleci.com/gh/vinigmoraes/ifood-challenge.svg?style=svg)](https://circleci.com/gh/vinigmoraes/ifood-challenge)
 
 ## Requirements
