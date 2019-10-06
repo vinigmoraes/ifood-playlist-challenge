@@ -1,4 +1,6 @@
-![https://pixabay.com/photos/piano-music-score-music-sheet-1655558/]
+# IFood Challenge
+
+![](https://cdn.pixabay.com/photo/2016/09/08/21/09/piano-1655558_1280.jpg)
 
 [![CircleCI](https://circleci.com/gh/vinigmoraes/ifood-challenge.svg?style=svg)](https://circleci.com/gh/vinigmoraes/ifood-challenge)
 
