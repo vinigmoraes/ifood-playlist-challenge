@@ -1,4 +1,4 @@
-package br.com.challenge.infrastructure.gateway.openweather.exceptions.errors
+package br.com.challenge.commons.exceptions.errors
 
 data class ErrorResponse(
     val message: String,

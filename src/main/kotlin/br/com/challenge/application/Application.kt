@@ -8,8 +8,7 @@ import br.com.challenge.application.config.objectMapper
 import br.com.challenge.application.health.HealthController
 import br.com.challenge.application.health.health
 import br.com.challenge.application.health.healthModules
-import br.com.challenge.application.playlist.playlistModules
-import br.com.challenge.infrastructure.gateway.exceptions.GatewayException
+import br.com.challenge.commons.exceptions.CityPlaylistApiException
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -27,11 +26,11 @@ import org.koin.ktor.ext.inject
 fun Application.main() {
 
     install(Koin) {
-        modules(listOf(healthModules, cityModules, configModules, playlistModules))
+        modules(listOf(healthModules, cityModules, configModules))
     }
 
     install(StatusPages) {
-        exception(GatewayException::class.java) { call.respond(it.statusCode(), it.response()) }
+        exception(CityPlaylistApiException::class.java) { call.respond(it.statusCode(), it.response()) }
     }
 
     install(ContentNegotiation) {

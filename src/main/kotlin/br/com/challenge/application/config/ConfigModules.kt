@@ -1,7 +1,7 @@
 package br.com.challenge.application.config
 
 import br.com.challenge.core.weather.ports.OpenWeatherGateway
-import br.com.challenge.core.track.ports.SpotifyGateway
+import br.com.challenge.core.weather.playlist.ports.SpotifyGateway
 import br.com.challenge.infrastructure.gateway.openweather.OpenWeatherGatewayAdapter
 import br.com.challenge.infrastructure.gateway.spotify.SpotifyGatewayAdapter
 import org.koin.dsl.module

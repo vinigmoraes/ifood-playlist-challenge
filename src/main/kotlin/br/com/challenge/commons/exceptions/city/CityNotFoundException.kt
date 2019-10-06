@@ -1,13 +1,13 @@
-package br.com.challenge.infrastructure.gateway.openweather.exceptions
+package br.com.challenge.commons.exceptions.city
 
-import br.com.challenge.infrastructure.gateway.exceptions.GatewayException
-import br.com.challenge.infrastructure.gateway.openweather.exceptions.errors.ErrorResponse
+import br.com.challenge.commons.exceptions.CityPlaylistApiException
+import br.com.challenge.commons.exceptions.errors.ErrorResponse
 import io.ktor.http.HttpStatusCode
 
 class CityNotFoundException(
     override val message: String,
     val parameter: String
-) : GatewayException() {
+) : CityPlaylistApiException() {
 
     override fun statusCode(): HttpStatusCode = HttpStatusCode.NotFound
 
