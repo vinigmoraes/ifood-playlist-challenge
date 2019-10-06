@@ -18,17 +18,17 @@ class CityPlaylistTest {
     @Test
     fun `should return http status code 200 and a playlist of a city`() =
         withTestApplication(Application::main) {
-            val cityName = "campinas"
+            val cityName = "Campinas"
 
             val response = handleRequest(HttpMethod.Get, "cities/$cityName/playlist") {
                 addHeader("Content-Type", "application/json")
             }.response
 
-            val playlist = objectMapper.readValue<CityPlaylistResponse>(response.content!!)
+            val cityPlaylist = objectMapper.readValue<CityPlaylistResponse>(response.content!!)
 
-            Assert.assertEquals(playlist.cityName, cityName)
-            Assert.assertNotNull(playlist.temperature)
-            Assert.assertNotNull(playlist.playlist)
+            Assert.assertEquals(cityPlaylist.city.name, cityName)
+            Assert.assertNotNull(cityPlaylist.city.temperature)
+            Assert.assertNotNull(cityPlaylist.playlist)
             Assert.assertEquals(HttpStatusCode.OK, response.status())
         }
 

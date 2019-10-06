@@ -4,6 +4,8 @@ import br.com.challenge.infrastructure.gateway.openweather.response.OpenWeatherR
 
 interface OpenWeatherGateway {
 
-    fun getCityTemperature(cityName: String): Double
+    fun getCityTemperature(cityName: String): OpenWeatherResponse?
+
+    fun getCityTemperature(latitude: Double, longitude: Double) : OpenWeatherResponse?
 
 }

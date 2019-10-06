@@ -6,6 +6,8 @@ import io.ktor.routing.get
 
 fun Routing.cityRoutes(cityController: CityController) {
 
-    get("/cities/{name}/playlist") { cityController.playlist(call) }
+    get("/cities/{name}/playlist") { cityController.playlistByName(call) }
+
+    get("/cities/latitude/{latitude}/longitude/{longitude}") {cityController.playlistByCoordinates(call)}
 
 }

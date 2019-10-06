@@ -1,10 +1,16 @@
 package unit.core.city
 
+import br.com.challenge.commons.exceptions.city.CityNotFoundException
 import br.com.challenge.core.city.CityService
 import br.com.challenge.core.weather.domain.Warm
 import br.com.challenge.core.weather.playlist.Playlist
 import br.com.challenge.core.weather.playlist.ports.SpotifyGateway
 import br.com.challenge.core.weather.ports.OpenWeatherGateway
+import br.com.challenge.infrastructure.gateway.openweather.response.OpenWeatherMainResponse
+import br.com.challenge.infrastructure.gateway.openweather.response.OpenWeatherResponse
+import com.github.kittinunf.fuel.core.FuelManager
+import com.github.kittinunf.fuel.httpGet
+import io.ktor.http.HttpStatusCode
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert
@@ -23,25 +29,31 @@ class CityServiceTest {
         val warmWeather = Warm(temperature)
         val tracks = listOf("Music 1", "Music 2")
         val playlist = Playlist(name = "Pop music", tracks = tracks)
+        val city = OpenWeatherResponse(
+            name = cityName,
+            main = OpenWeatherMainResponse(temperature)
+        )
 
-        every { openWeatherGateway.getCityTemperature(cityName) } returns temperature
+        every { openWeatherGateway.getCityTemperature(cityName) } returns city
         every { spotifyGateway.playlist(warmWeather.playlistType()).playlist } returns playlist
 
         val cityPlaylist = cityService.playlist(cityName)
 
-        Assert.assertEquals(cityPlaylist.name, playlist.name)
-        Assert.assertEquals(cityPlaylist.tracks, playlist.tracks)
+        Assert.assertEquals(cityPlaylist.city.name, playlist.name)
+        Assert.assertEquals(cityPlaylist.playlist.tracks, playlist.tracks)
     }
 
-    @Test
-    fun `should return temperature successfully`() {
+    @Test(expected = CityNotFoundException::class)
+    fun `should throw exception when city name was not found`() {
         val cityName = "campinas"
-        val expectedTemperature = 21.0
+        val temperature = 21.0
+        val warmWeather = Warm(temperature)
+        val tracks = listOf("Music 1", "Music 2")
+        val playlist = Playlist(name = "Pop music", tracks = tracks)
 
-        every { openWeatherGateway.getCityTemperature(cityName) } returns expectedTemperature
+        every { openWeatherGateway.getCityTemperature(cityName) } returns null
+        every { spotifyGateway.playlist(warmWeather.playlistType()).playlist } returns playlist
 
-        val temperature = cityService.getTemperature(cityName)
-
-        Assert.assertEquals(expectedTemperature, temperature, 1.0)
+        cityService.playlist(cityName)
     }
 }

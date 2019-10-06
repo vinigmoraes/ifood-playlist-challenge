@@ -1,7 +1,7 @@
 package br.com.challenge.application.city
 
 import br.com.challenge.application.city.response.CityPlaylistResponse
-import br.com.challenge.commons.exceptions.InvalidCityNameParameter
+import br.com.challenge.commons.exceptions.InvalidParameter
 import br.com.challenge.core.city.CityService
 import io.ktor.application.ApplicationCall
 import io.ktor.http.HttpStatusCode
@@ -11,14 +11,23 @@ class CityController(
     private val cityService: CityService
 ) {
 
-    suspend fun playlist(call: ApplicationCall) {
+    suspend fun playlistByName(call: ApplicationCall) {
 
-        val cityName = call.parameters["name"] ?: throw InvalidCityNameParameter(call.parameters["name"])
+        val cityName = call.parameters["name"] ?: throw InvalidParameter(call.parameters["name"])
 
-        val playlist = cityService.playlist(cityName)
+        val cityPlaylist = cityService.playlist(cityName)
 
-        val temperature = cityService.getTemperature(cityName)
+        call.respond(HttpStatusCode.OK, CityPlaylistResponse(cityPlaylist.city, cityPlaylist.playlist))
+    }
 
-        call.respond(HttpStatusCode.OK, CityPlaylistResponse(cityName, temperature, playlist))
+    suspend fun playlistByCoordinates(call: ApplicationCall) {
+
+        val latitude = call.parameters["latitude"]?.toDoubleOrNull() ?: throw Exception()
+
+        val longitude = call.parameters["longitude"]?.toDoubleOrNull() ?: throw Exception()
+
+        val cityPlaylist = cityService.playlist(latitude, longitude)
+
+        call.respond(HttpStatusCode.OK, CityPlaylistResponse(cityPlaylist.city, cityPlaylist.playlist))
     }
 }

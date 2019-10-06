@@ -6,7 +6,7 @@ import io.ktor.http.HttpStatusCode
 
 class CityNotFoundException(
     override val message: String,
-    val parameter: String
+    private val parameter: List<String>
 ) : CityPlaylistApiException() {
 
     override fun statusCode(): HttpStatusCode = HttpStatusCode.NotFound
