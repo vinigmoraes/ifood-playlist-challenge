@@ -16,9 +16,11 @@ repositories {
 }
 
 test {
-    file('variables.env').readLines().each() {
-        def (key, value) = it.tokenize('=')
-        environment(key, value)
+    if (file('variables.env').exists()) {
+        file('variables.env').readLines().each() {
+            def (key, value) = it.tokenize('=')
+            environment(key, value)
+        }
     }
 }
 
