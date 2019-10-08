@@ -6,6 +6,6 @@ interface OpenWeatherGateway {
 
     fun getCityTemperature(cityName: String): OpenWeatherResponse?
 
-    fun getCityTemperature(latitude: Double, longitude: Double) : OpenWeatherResponse?
+    fun getCityTemperature(latitude: Float, longitude: Float) : OpenWeatherResponse?
 
 }

@@ -13,7 +13,7 @@ class CityController(
 
     suspend fun playlistByName(call: ApplicationCall) {
 
-        val cityName = call.parameters["name"] ?: throw InvalidParameter(call.parameters["name"])
+        val cityName = call.parameters["name"]!!
 
         val cityPlaylist = cityService.playlist(cityName)
 
@@ -22,9 +22,9 @@ class CityController(
 
     suspend fun playlistByCoordinates(call: ApplicationCall) {
 
-        val latitude = call.parameters["latitude"]?.toDoubleOrNull() ?: throw Exception()
+        val latitude = call.parameters["latitude"]?.toFloatOrNull() ?: throw InvalidParameter(call.parameters["latitude"])
 
-        val longitude = call.parameters["longitude"]?.toDoubleOrNull() ?: throw Exception()
+        val longitude = call.parameters["longitude"]?.toFloatOrNull() ?: throw InvalidParameter(call.parameters["longitude"])
 
         val cityPlaylist = cityService.playlist(latitude, longitude)
 

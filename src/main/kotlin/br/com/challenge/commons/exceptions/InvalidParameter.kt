@@ -4,10 +4,10 @@ import br.com.challenge.commons.exceptions.errors.ErrorResponse
 import io.ktor.http.HttpStatusCode
 
 class InvalidParameter(
-    val parameter: String?
+    private val parameter: String?
 ) : CityPlaylistApiException() {
     override fun response(): ErrorResponse =
-        ErrorResponse.create("Invalid value for city name: $parameter", "parameter" to parameter)
+        ErrorResponse.create("Invalid value for parameter: $parameter", "parameter" to parameter)
 
     override fun statusCode(): HttpStatusCode = HttpStatusCode.UnprocessableEntity
 }

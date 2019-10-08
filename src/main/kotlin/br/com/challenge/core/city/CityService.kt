@@ -26,7 +26,7 @@ class CityService(
         return CityPlaylist(city, playlist)
     }
 
-    fun playlist(latitude: Double, longitude: Double): CityPlaylist {
+    fun playlist(latitude: Float, longitude: Float): CityPlaylist {
         val response = getTemperature(latitude, longitude) ?: throw CityNotFoundException(
             "City with coordinates: $latitude, $longitude not found",
             listOf(latitude.toString(), longitude.toString())
@@ -43,5 +43,5 @@ class CityService(
 
     private fun getTemperature(cityName: String) = openWeatherGateway.getCityTemperature(cityName)
 
-    private fun getTemperature(latitude: Double, longitude: Double) = openWeatherGateway.getCityTemperature(latitude, longitude)
+    private fun getTemperature(latitude: Float, longitude: Float) = openWeatherGateway.getCityTemperature(latitude, longitude)
 }

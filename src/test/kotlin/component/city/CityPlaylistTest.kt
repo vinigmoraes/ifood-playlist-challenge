@@ -16,7 +16,7 @@ import utils.readJsonResponse
 class CityPlaylistTest {
 
     @Test
-    fun `should return http status code 200 and a playlist of a city`() =
+    fun `should return http status code 200 and a playlist of a city given city name`() =
         withTestApplication(Application::main) {
             val cityName = "Campinas"
 
@@ -43,6 +43,39 @@ class CityPlaylistTest {
             }.response
 
             Assert.assertEquals(HttpStatusCode.NotFound, response.status())
+            Assert.assertEquals(expectedResponse, response.content)
+        }
+
+    @Test
+    fun `should return http status code 200 and playlist of a city given city coordinates`() =
+        withTestApplication(Application::main) {
+            val latitude = -22.9064
+            val longitude = -47.0616
+
+            val response = handleRequest(HttpMethod.Get, "cities/latitude/$latitude/longitude/$longitude/playlist") {
+                addHeader("Content-Type", "application/json")
+            }.response
+
+            val cityPlaylist = objectMapper.readValue<CityPlaylistResponse>(response.content!!)
+
+            Assert.assertNotNull(cityPlaylist.city.temperature)
+            Assert.assertNotNull(cityPlaylist.playlist)
+            Assert.assertEquals(HttpStatusCode.OK, response.status())
+        }
+
+    @Test
+    fun `should return http status code 404 when city coordinates doesn't exist`() =
+        withTestApplication(Application::main) {
+            val latitude = -22.9064
+            val longitude = "xxxx"
+
+            val expectedResponse = readJsonResponse("invalid_parameter")
+
+            val response = handleRequest(HttpMethod.Get, "cities/latitude/$latitude/longitude/$longitude/playlist") {
+                addHeader("Content-Type", "application/json")
+            }.response
+
+            Assert.assertEquals(HttpStatusCode.UnprocessableEntity, response.status())
             Assert.assertEquals(expectedResponse, response.content)
         }
 }

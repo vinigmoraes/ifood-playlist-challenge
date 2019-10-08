@@ -1,0 +1,6 @@
+{
+  "message" : "Invalid value for parameter: xxxx",
+  "details" : {
+    "parameter" : "xxxx"
+  }
+}

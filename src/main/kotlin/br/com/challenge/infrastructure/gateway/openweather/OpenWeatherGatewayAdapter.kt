@@ -14,7 +14,7 @@ class OpenWeatherGatewayAdapter(
     private val objectMapper: ObjectMapper
 ) : OpenWeatherGateway {
 
-    override fun getCityTemperature(latitude: Double, longitude: Double): OpenWeatherResponse? {
+    override fun getCityTemperature(latitude: Float, longitude: Float): OpenWeatherResponse? {
 
         val request = url(latitude, longitude).httpGet()
 
@@ -45,6 +45,6 @@ class OpenWeatherGatewayAdapter(
 
     private fun url(cityName: String) = "$url?q=$cityName&units=metric&appid=$apiKey"
 
-    private fun url(latitude: Double, longitude: Double) =
+    private fun url(latitude: Float, longitude: Float) =
         "$url?lat=$latitude&lon=$longitude&units=metric&appid=$apiKey"
 }
