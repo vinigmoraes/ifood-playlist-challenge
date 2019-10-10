@@ -8,9 +8,6 @@ import br.com.challenge.core.weather.playlist.ports.SpotifyGateway
 import br.com.challenge.core.weather.ports.OpenWeatherGateway
 import br.com.challenge.infrastructure.gateway.openweather.response.OpenWeatherMainResponse
 import br.com.challenge.infrastructure.gateway.openweather.response.OpenWeatherResponse
-import com.github.kittinunf.fuel.core.FuelManager
-import com.github.kittinunf.fuel.httpGet
-import io.ktor.http.HttpStatusCode
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert

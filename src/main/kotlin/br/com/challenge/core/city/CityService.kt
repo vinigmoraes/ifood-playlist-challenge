@@ -2,7 +2,6 @@ package br.com.challenge.core.city
 
 import br.com.challenge.commons.exceptions.city.CityNotFoundException
 import br.com.challenge.core.weather.WeatherFactory
-import br.com.challenge.core.weather.playlist.Playlist
 import br.com.challenge.core.weather.playlist.ports.SpotifyGateway
 import br.com.challenge.core.weather.ports.OpenWeatherGateway
 

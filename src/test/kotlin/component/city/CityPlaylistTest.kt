@@ -1,8 +1,8 @@
 package component.city
 
+import br.com.challenge.application.city.response.CityPlaylistResponse
 import br.com.challenge.application.config.objectMapper
 import br.com.challenge.application.main
-import br.com.challenge.application.city.response.CityPlaylistResponse
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.ktor.application.Application
 import io.ktor.http.HttpMethod

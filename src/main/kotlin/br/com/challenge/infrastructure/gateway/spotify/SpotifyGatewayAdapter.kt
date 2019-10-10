@@ -1,7 +1,7 @@
 package br.com.challenge.infrastructure.gateway.spotify
 
-import br.com.challenge.core.weather.playlist.ports.SpotifyGateway
 import br.com.challenge.core.weather.playlist.Playlist
+import br.com.challenge.core.weather.playlist.ports.SpotifyGateway
 import br.com.challenge.infrastructure.gateway.spotify.response.SpotifyPlaylistResponse
 import com.wrapper.spotify.SpotifyApi
 import com.wrapper.spotify.SpotifyHttpManager
