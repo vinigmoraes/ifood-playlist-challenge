@@ -1,6 +1,7 @@
 # IFood Challenge
 
-REST API responsible for receive city name and produce a Spotify playlist given city temperature.
+Rest Api responsible for receive city name and produce Spotify Playlist given city temperature.
+
 
 [![CircleCI](https://circleci.com/gh/vinigmoraes/ifood-challenge.svg?style=svg)](https://circleci.com/gh/vinigmoraes/ifood-challenge) [![codecov](https://codecov.io/gh/vinigmoraes/ifood-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/vinigmoraes/ifood-challenge)
 ## Requirements
