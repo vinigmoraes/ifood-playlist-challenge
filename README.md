@@ -1,6 +1,6 @@
 # IFood Challenge
 
-![](https://cdn.pixabay.com/photo/2016/09/08/21/09/piano-1655558_1280.jpg)
+Rest API responsible for produces spotify playlist given a city name or coordenates.
 
 [![CircleCI](https://circleci.com/gh/vinigmoraes/ifood-challenge.svg?style=svg)](https://circleci.com/gh/vinigmoraes/ifood-challenge) [![codecov](https://codecov.io/gh/vinigmoraes/ifood-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/vinigmoraes/ifood-challenge)
 ## Requirements
