@@ -9,9 +9,9 @@ commands:
       - run:
           name: Code coverage
           command: |
-            ./gradlew jacocoRootReport
+            ./gradlew jacocoTestReport
             ./gradlew jacocoTestCoverageVerification
-            bash <(curl -s https://codecov.io/bash)
+            bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
       - store_test_results:
           path: /home/circleci/dev-challenge/build/test-results/test
 
