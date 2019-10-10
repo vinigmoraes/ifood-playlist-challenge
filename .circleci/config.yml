@@ -1,4 +1,20 @@
 version: 2
+
+commands:
+  execute_test:
+    description: "Execute application tests"
+    steps:
+      - run: sudo apt-get install libaio1
+      - run: ./gradlew check
+      - run:
+          name: Code coverage
+          command: |
+            ./gradlew jacocoRootReport
+            ./gradlew jacocoTestCoverageVerification
+            bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: /home/circleci/dev-challenge/build/test-results/test
+
 jobs:
   build:
     docker:
@@ -36,17 +52,3 @@ jobs:
 
       # run tests!
       - run: gradle test
-
-  execute_test:
-    description: "Execute application tests"
-    steps:
-      - run: sudo apt-get install libaio1
-      - run: ./gradlew check
-      - run:
-          name: Code coverage
-          command: |
-            ./gradlew jacocoRootReport
-            ./gradlew jacocoTestCoverageVerification
-            bash <(curl -s https://codecov.io/bash)
-      - store_test_results:
-          path: /home/circleci/dev-challenge/build/test-results/test
