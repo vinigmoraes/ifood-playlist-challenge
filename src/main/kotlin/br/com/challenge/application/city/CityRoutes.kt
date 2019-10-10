@@ -9,5 +9,4 @@ fun Routing.cityRoutes(cityController: CityController) {
     get("/cities/{name}/playlist") { cityController.playlistByName(call) }
 
     get("/cities/latitude/{latitude}/longitude/{longitude}/playlist") {cityController.playlistByCoordinates(call)}
-
 }

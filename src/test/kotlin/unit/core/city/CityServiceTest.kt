@@ -23,7 +23,7 @@ class CityServiceTest {
     private val cityService = CityService(openWeatherGateway, spotifyGateway)
 
     @Test
-    fun `should return playlist successfully`() {
+    fun `should return spotify playlist successfully given city name`() {
         val cityName = "campinas"
         val temperature = 21.0
         val warmWeather = Warm(temperature)
@@ -38,6 +38,29 @@ class CityServiceTest {
         every { spotifyGateway.playlist(warmWeather.playlistType()).playlist } returns playlist
 
         val cityPlaylist = cityService.playlist(cityName)
+
+        Assert.assertEquals(cityPlaylist.playlist.name, playlist.name)
+        Assert.assertEquals(cityPlaylist.playlist.tracks, playlist.tracks)
+    }
+
+    @Test
+    fun `should return spotify playlist successfully given city coordinates`() {
+        val cityName = "campinas"
+        val latitude = -21.0f
+        val longitude = 5f
+        val temperature = 21.0
+        val warmWeather = Warm(temperature)
+        val tracks = listOf("Music 1", "Music 2")
+        val playlist = Playlist(name = "Pop music", tracks = tracks)
+        val city = OpenWeatherResponse(
+            name = cityName,
+            main = OpenWeatherMainResponse(temperature)
+        )
+
+        every { openWeatherGateway.getCityTemperature(latitude, longitude) } returns city
+        every { spotifyGateway.playlist(warmWeather.playlistType()).playlist } returns playlist
+
+        val cityPlaylist = cityService.playlist(latitude, longitude)
 
         Assert.assertEquals(cityPlaylist.playlist.name, playlist.name)
         Assert.assertEquals(cityPlaylist.playlist.tracks, playlist.tracks)
