@@ -40,7 +40,7 @@ class OpenWeatherGatewayAdapter(
             return null
         }
 
-        return objectMapper.readValue(response.data, OpenWeatherResponse::class.java)
+        return objectMapper.readValue(response.body().toByteArray(), OpenWeatherResponse::class.java)
     }
 
     private fun url(cityName: String) = "$url?q=$cityName&units=metric&appid=$apiKey"
