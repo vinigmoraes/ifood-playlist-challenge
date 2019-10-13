@@ -41,7 +41,6 @@ dependencies {
     //test
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile("io.ktor:ktor-server-test-host:$ktor_version")
-    testCompile group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
     testCompile group: 'io.mockk', name: 'mockk', version: '1.9.3'
     testCompile group: 'org.mock-server', name: 'mockserver-netty', version: '5.6.1'
 

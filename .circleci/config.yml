@@ -36,6 +36,8 @@ jobs:
             ./gradlew jacocoTestReport
             ./gradlew jacocoTestCoverageVerification
             bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
+      - store_test_results:
+          path: /home/circleci/tracks-api/build/test-results/test
 
       - save_cache:
           paths:
