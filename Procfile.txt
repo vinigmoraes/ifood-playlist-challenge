@@ -1,1 +1,0 @@
-web: java -jar build/libs/tracks-api-1.0-SNAPSHOT-1.0.jar
