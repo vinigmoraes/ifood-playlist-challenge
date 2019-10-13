@@ -1,1 +1,1 @@
-web: java -jar build/libs/tracks-api-1.0-SNAPSHOT-all.jar
+web: java -Dserver.port=$PORT -jar build/libs/tracks-api-1.0-SNAPSHOT-all.jar
