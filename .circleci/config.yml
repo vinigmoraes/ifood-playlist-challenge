@@ -40,7 +40,10 @@ jobs:
       # run tests!
       - run: gradle test
   deploy:
+    machine:
+      enabled: true
     steps:
+      - checkout
       - run:
           name: Deploy Master to Heroku
           command: |
