@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.5
+
 jobs:
   build:
     docker:
@@ -21,13 +24,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Code coverage
-          command: |
-            ./gradlew jacocoTestReport
-            ./gradlew jacocoTestCoverageVerification
-            bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -36,6 +32,13 @@ jobs:
             - v1-dependencies-
 
       - run: gradle dependencies
+
+      - run:
+          name: Code coverage
+          command: |
+            ./gradlew jacocoTestReport
+            ./gradlew jacocoTestCoverageVerification
+            bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
 
       - save_cache:
           paths:
