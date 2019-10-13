@@ -5,6 +5,7 @@ buildscript {
 
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
 group 'br.com.challenge'
@@ -83,11 +84,13 @@ tasks.withType(Test) {
     }
 }
 
-jar {
+shadowJar {
     manifest {
         attributes 'Main-Class': 'io.ktor.server.netty.EngineMain'
     }
 }
+
+assemble.dependsOn shadowJar
 
 jacocoTestReport {
     reports {
