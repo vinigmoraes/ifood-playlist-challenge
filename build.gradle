@@ -84,5 +84,7 @@ jacocoTestReport {
     reports {
         xml.enabled true
         html.enabled false
+
+        xml.destination file("build/reports/coverage")
     }
 }
