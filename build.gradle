@@ -58,6 +58,9 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
 tasks.withType(Test) {
     testLogging {
         events "failed", "passed", "skipped", "standard_out"
