@@ -40,10 +40,7 @@ jobs:
       # run tests!
       - run: gradle test
   deploy:
-    docker:
-      - image: buildpack-deps:trusty
     steps:
-      - checkout
       - run:
           name: Deploy Master to Heroku
           command: |
