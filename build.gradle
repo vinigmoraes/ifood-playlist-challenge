@@ -85,9 +85,7 @@ tasks.withType(Test) {
 
 jar {
     manifest {
-        attributes(
-                'Main-Class': 'br.com.challenge.application.ApplicationKt'
-        )
+        attributes 'Main-Class': 'io.ktor.server.netty.EngineMain'
     }
 }
 
