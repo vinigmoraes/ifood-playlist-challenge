@@ -28,6 +28,10 @@ For building and running the application you need:
 ./gradlew test
 ```
 
+## Deployment
+
+Application is configured to every push to master execute deploy automatic.
+
 ## Built With
 
 - [Kotlin](https://kotlinlang.org/) - Programming language
