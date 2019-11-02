@@ -29,7 +29,6 @@ fun Application.main() {
         modules(listOf(healthModules, cityModules, gatewayModules))
     }
 
-
     install(StatusPages) {
         exception(CityPlaylistApiException::class.java) { call.respond(it.statusCode(), it.response()) }
     }

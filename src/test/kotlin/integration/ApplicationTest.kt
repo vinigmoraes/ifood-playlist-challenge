@@ -24,7 +24,7 @@ import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.inject
 import utils.mock.mockModules
 
-fun Application.mainTest() {
+fun Application.test() {
 
     install(Koin) {
         modules(listOf(healthModules, cityModules, mockModules))

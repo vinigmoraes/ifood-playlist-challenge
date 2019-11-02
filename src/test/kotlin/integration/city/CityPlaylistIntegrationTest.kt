@@ -2,9 +2,8 @@ package integration.city
 
 import br.com.challenge.application.city.response.CityPlaylistResponse
 import br.com.challenge.application.config.objectMapper
-import br.com.challenge.application.main
 import com.fasterxml.jackson.module.kotlin.readValue
-import integration.mainTest
+import integration.test
 import io.ktor.application.Application
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
@@ -35,8 +34,7 @@ class CityPlaylistIntegrationTest {
 
     @Test
     fun `should return http status code 200 and a playlist of a city given city name`() =
-        withTestApplication(Application::mainTest) {
-
+        withTestApplication(Application::test) {
             val cityName = "Campinas"
 
             val response = handleRequest(HttpMethod.Get, "cities/$cityName/playlist") {
@@ -53,7 +51,7 @@ class CityPlaylistIntegrationTest {
 
     @Test
     fun `should return http status code 404 when city name doesn't exist`() =
-        withTestApplication(Application::mainTest) {
+        withTestApplication(Application::test) {
             val cityName = "test"
             val expectedResponse = readJsonResponse("city_not_found")
 
@@ -61,15 +59,15 @@ class CityPlaylistIntegrationTest {
                 addHeader("Content-Type", "application/json")
             }.response
 
-            Assert.assertEquals(HttpStatusCode.NotFound, response.status())
             Assert.assertEquals(expectedResponse, response.content)
+            Assert.assertEquals(HttpStatusCode.NotFound, response.status())
         }
 
     @Test
     fun `should return http status code 200 and playlist of a city given city coordinates`() =
-        withTestApplication(Application::mainTest) {
-            val latitude = -22.9064
-            val longitude = -47.0616
+        withTestApplication(Application::test) {
+            val latitude = 50f
+            val longitude = 30f
 
             val response = handleRequest(HttpMethod.Get, "cities/latitude/$latitude/longitude/$longitude/playlist") {
                 addHeader("Content-Type", "application/json")
@@ -84,7 +82,7 @@ class CityPlaylistIntegrationTest {
 
     @Test
     fun `should return http status code 404 when city coordinates doesn't exist`() =
-        withTestApplication(Application::main) {
+        withTestApplication(Application::test) {
             val latitude = -22.9064
             val longitude = "xxxx"
 

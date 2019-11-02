@@ -1,7 +1,9 @@
 package unit.infrastructure.gateway.openweather
 
 import br.com.challenge.application.config.objectMapper
+import br.com.challenge.commons.exceptions.city.CityNotFoundException
 import br.com.challenge.infrastructure.gateway.openweather.OpenWeatherGatewayAdapter
+import org.junit.AfterClass
 import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.Test
@@ -22,6 +24,12 @@ class OpenWeatherGatewayAdapterTest {
         fun setUp() {
             MockServer.start()
         }
+
+        @AfterClass
+        @JvmStatic
+        fun setDown() {
+            MockServer.stop()
+        }
     }
 
     @Test
@@ -32,13 +40,11 @@ class OpenWeatherGatewayAdapterTest {
         Assert.assertEquals(10.53, response.main.temp, 1.0)
     }
 
-    @Test
+    @Test(expected = CityNotFoundException::class)
     fun `should not return temperature when city was not find by name`() {
         val cityName = "test"
 
-        val response = openWeatherGatewayAdapter.getCityTemperature(cityName)
-
-        Assert.assertNull(response)
+        openWeatherGatewayAdapter.getCityTemperature(cityName)
     }
 
     @Test
