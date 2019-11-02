@@ -3,9 +3,9 @@ package unit.infrastructure.gateway.openweather
 import br.com.challenge.application.config.objectMapper
 import br.com.challenge.infrastructure.gateway.openweather.OpenWeatherGatewayAdapter
 import org.junit.Assert
-import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
-import utils.startMockServer
+import utils.MockServer
 
 class OpenWeatherGatewayAdapterTest {
 
@@ -16,9 +16,12 @@ class OpenWeatherGatewayAdapterTest {
     private val latitude = 50f
     private val longitude = 30f
 
-    @Before
-    fun setUp() {
-        startMockServer()
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun setUp() {
+            MockServer.start()
+        }
     }
 
     @Test

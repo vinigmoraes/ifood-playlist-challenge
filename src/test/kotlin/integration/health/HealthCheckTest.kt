@@ -1,4 +1,4 @@
-package component.health
+package integration.health
 
 import br.com.challenge.application.main
 import io.ktor.application.Application

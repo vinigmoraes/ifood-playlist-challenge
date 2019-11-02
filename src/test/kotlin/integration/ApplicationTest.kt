@@ -1,4 +1,4 @@
-package br.com.challenge.application
+package integration
 
 import br.com.challenge.application.city.CityController
 import br.com.challenge.application.city.cityModules
@@ -22,11 +22,12 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.inject
+import utils.mock.mockModules
 
-fun Application.main() {
+fun Application.mainTest() {
 
     install(Koin) {
-        modules(listOf(healthModules, cityModules, gatewayModules))
+        modules(listOf(healthModules, cityModules, mockModules))
     }
 
 
@@ -52,4 +53,3 @@ fun main() {
         main()
     }.start(wait = true)
 }
-
