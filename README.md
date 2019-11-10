@@ -11,6 +11,16 @@ For building and running the application you need:
 - [Gradle](https://gradle.org/)
 - [Docker](https://www.docker.com/)
 
+## Env variables
+
+```
+OPEN_WEATHER_API_KEY=b77e07f479efe92156376a8b07640ced
+OPEN_WEATHER_URL=http://api.openweathermap.org/data/2.5/weather
+SPOTIFY_CLIENT_ID=<<your client id>>
+SPOTIFY_CLIENT_SECRET=<<your client secret>>
+```
+
+
 ## Executing requests
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/826217/SVtR3rEt)
