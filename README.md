@@ -2,8 +2,7 @@
 
 Rest Api responsible for receive city name or coordinates and produce Spotify Playlist given city temperature.
 
-
-[![CircleCI](https://circleci.com/gh/vinigmoraes/ifood-challenge.svg?style=svg)](https://circleci.com/gh/vinigmoraes/ifood-challenge) [![codecov](https://codecov.io/gh/vinigmoraes/ifood-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/vinigmoraes/ifood-challenge)
+[![CircleCI](https://circleci.com/gh/vinigmoraes/ifood-playlist-challenge/tree/master.svg?style=svg)](https://circleci.com/gh/vinigmoraes/ifood-playlist-challenge/tree/master)
 ## Requirements
 
 For building and running the application you need:
